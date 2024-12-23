@@ -1,0 +1,143 @@
+CS 230 Project Software Design Template
+Version 1.0
+
+Table of Contents
+
+CS 230 Project Software Design Template	1
+Table of Contents	2
+Document Revision History	2
+Executive Summary	3
+Requirements	3
+Design Constraints	3
+System Architecture View	3
+Domain Model	3
+Evaluation	4
+Recommendations	5
+
+
+Document Revision History
+
+Version
+Date
+Author
+Comments
+1.0
+11/15/2024
+Carter Nadain
+Added detailed recommendations for operating platform, system architecture, storage management, memory management, distributed systems, and security to support the expansion and scalability of Draw It or Lose It.
+
+
+Instructions 
+Fill in all bracketed information on page one (the cover page), in the Document Revision History table, and below each header. Under each header, remove the bracketed prompt and write your own paragraph response covering the indicated information. 
+Executive Summary
+
+The client requires a modern web-based game application that supports multiplayer functionality, scalable performance, and seamless access across devices. The primary focus is to deliver an engaging, user-friendly platform that allows players to interact in real time while ensuring security and reliability. To achieve this, the solution will utilize a cloud-hosted architecture with a robust backend for managing game logic and data and a responsive frontend that delivers an excellent user experience on any device. RESTful APIs will connect the components, and a cloud database will handle data storage and scalability, ensuring the application is future-proof and capable of growing with user demand.
+
+Requirements
+
+Business Requirements:
+
+Support real-time multiplayer gameplay.
+Provide an intuitive and engaging user experience.
+Enable user account management, including registration, login, and profile creation.
+Ensure the system is scalable to accommodate increasing numbers of users and games over time.
+Technical Requirements:
+
+Real-time communication between players.
+Secure user authentication and data protection.
+Responsive design to ensure compatibility with desktops, tablets, and mobile devices.
+Cloud-based hosting and storage for scalability and reliability.
+
+
+Design Constraints
+
+Scalability:
+The application must handle an increasing number of users without performance degradation. This will require the use of cloud-based services, load balancing, and scalable database solutions to ensure reliability during peak usage.
+
+Real-time Performance:
+Real-time interactions are critical for multiplayer gameplay. Implementing WebSocket protocols will minimize latency and provide a smooth experience for users.
+
+Security:
+Protecting user data and accounts is a priority. Secure protocols such as HTTPS, OAuth2, and encrypted database storage will be implemented to safeguard sensitive information.
+
+Cross-platform Compatibility:
+The application must function seamlessly on various devices and screen sizes. Responsive design techniques and front-end frameworks like React will ensure consistent usability across platforms.
+
+Data Consistency:
+Maintaining accurate and synchronized game data across distributed systems is essential. A cloud-based database like MongoDB will handle large-scale data while ensuring consistency and reliability.
+Development Time and Budget:
+To meet deadlines and budget constraints, open-source technologies and agile development practices will be used. This will allow for iterative progress and prioritization of core features to meet client expectations efficiently.
+
+
+System Architecture View
+
+Please note: There is nothing required here for these projects, but this section serves as a reminder that describing the system and subsystem architecture present in the application, including physical components or tiers, may be required for other projects. A logical topology of the communication and storage aspects is also necessary to understand the overall architecture and should be provided.
+
+Domain Model
+
+This UML diagram shows how the different classes in the Gaming Room project work together to meet the application's goals. At the center of it all is GameService, which acts as a controller for managing games, teams, and players. It's designed as a singleton, meaning there’s only ever one instance of it running at a time. This ensures that all parts of the app are working with the same set of data. Pretty efficient, right?
+
+The Entity class is like a blueprint for shared properties—id and name. Classes like Game, Team, and Player inherit from it to avoid repeating the same fields and methods. This demonstrates inheritance and makes the code cleaner and easier to manage.
+
+Here’s how they connect:
+
+GameService keeps track of all the games in a List<Game>.
+
+-Each Game can have multiple Teams, and each Team can have multiple Players. This shows composition, where larger objects (like a game) are made up of smaller ones (teams and players).
+
+-The ProgramDriver runs the app by interacting with the GameService, and the SingletonTester ensures the singleton pattern is working properly.
+
+-Overall, the diagram uses object-oriented principles like inheritance, composition, and encapsulation to keep things modular and easy to scale. It’s all about building a structure that meets the software requirements in a logical, reusable way.
+
+
+
+
+Evaluation
+
+Using your experience to evaluate the characteristics, advantages, and weaknesses of each operating platform (Linux, Mac, and Windows) as well as mobile devices, consider the requirements outlined below and articulate your findings for each. As you complete the table, keep in mind your client’s requirements and look at the situation holistically, as it all has to work together. 
+
+In each cell, remove the bracketed prompt and write your own paragraph response covering the indicated information. 
+
+Development Requirements
+Mac
+Linux
+Windows
+Mobile Devices
+Server Side
+Mac servers are known for their stability and ease of use. macOS provides a Unix-based architecture, making it developer-friendly for web hosting. However, they are less common in server environments compared to Linux, which can make scaling or finding support more difficult. Their cost is another consideration, as Mac hardware is typically more expensive.
+Linux is the most popular choice for hosting web-based software due to its flexibility, security, and cost-effectiveness. With many distributions (like Ubuntu and CentOS), Linux can be tailored to specific needs. Its command-line interface and support for web technologies like Apache, Nginx, and Docker make it a go-to platform. The only downside is that Linux can have a steep learning curve for those new to server management.
+Windows servers are ideal for hosting applications that require specific Microsoft technologies, like .NET, IIS, or SQL Server. The GUI interface makes server management more accessible for non-technical users. However, Windows servers tend to have higher licensing costs and may not be as robust as Linux for handling large-scale web hosting.
+Mobile devices are not typically used for hosting, but they influence server requirements. Web-based applications need to be mobile-responsive, requiring servers capable of efficiently serving lightweight and dynamic content. Additionally, the proliferation of mobile devices emphasizes the need for scalability and security to handle high traffic from diverse mobile platforms.
+Client Side
+Developing for Mac clients often requires familiarity with macOS-specific frameworks and tools, like Swift and Xcode, especially if supporting native macOS apps. However, Mac clients are excellent for cross-platform development, thanks to tools like Docker and virtualization software. Development costs may rise due to the premium hardware requirements.
+Linux is widely used by developers for client-side development due to its flexibility and open-source ecosystem. Tools like Vim, VSCode, and various command-line utilities streamline development. However, Linux clients may face compatibility issues with software not natively built for Linux, and the learning curve might deter less experienced developers.
+
+
+Windows clients are highly versatile and often used in enterprise environments. Windows supports a wide range of IDEs, like Visual Studio, and technologies like WAMP (Windows, Apache, MySQL, PHP). The downside is potential compatibility issues when testing apps across other operating systems, as well as dependency on proprietary software.
+Client-side development for mobile devices involves creating responsive web applications or native apps for platforms like iOS and Android. Tools like React Native or Flutter simplify cross-platform development. The challenge lies in testing and optimizing for the numerous device configurations and screen sizes available.
+Development Tools
+Development on macOS is seamless, especially for building software that targets Apple ecosystems. Tools like Xcode, Homebrew, and Docker are widely used. However, the requirement for Apple hardware can limit accessibility and increase costs.
+Linux provides a vast array of free development tools, from lightweight text editors like Vim to robust IDEs like IntelliJ IDEA and Eclipse. It's also ideal for containerized development using Docker or Kubernetes. The downside is that some enterprise-level tools or services might not have native Linux support.
+Windows offers comprehensive development tools, including Visual Studio, PowerShell, and .NET frameworks. It excels in supporting desktop and enterprise applications. However, Windows can fall short when it comes to Unix-like features, requiring developers to rely on tools like WSL (Windows Subsystem for Linux).
+Development tools for mobile devices often include platform-specific environments like Android Studio for Android and Xcode for iOS. Additionally, web apps require frameworks like React, Angular, or Vue.js to ensure mobile responsiveness. Debugging on mobile devices can be challenging without proper emulators or hardware.
+
+
+
+Recommendations
+
+Analyze the characteristics of and techniques specific to various systems architectures and make a recommendation to The Gaming Room. Specifically, address the following:
+
+Operating Platform: I recommend going with a Linux-based platform for hosting Draw It or Lose It. Linux is reliable, secure, and cost-effective. It’s widely used in web hosting and can handle scalability needs as the game grows. Plus, its open-source nature allows flexibility for customization, which is perfect for adapting to different environments.
+
+Operating Systems Architectures: Linux operates on a modular architecture, making it lightweight and efficient. For this project, I’d suggest using a server running Ubuntu Server, which is user-friendly but still powerful enough for enterprise needs. It supports essential web technologies like Apache or Nginx for serving the game and MySQL or PostgreSQL for managing the backend database.
+
+Storage Management:For storage, I recommend cloud-based storage solutions like Amazon S3 or Google Cloud Storage. These systems are highly scalable, making it easy to accommodate growing game data, such as player stats and game sessions. They also provide redundancy and backups, so data is safe even if something unexpected happens.
+
+
+Memory Management: Linux uses advanced memory management techniques like virtual memory, which ensures the server doesn’t crash even under heavy load. It allocates memory dynamically based on what’s actively being used, which is perfect for handling a game like Draw It or Lose It where player activity may spike at times. Additionally, caching tools like Redis can speed up data retrieval, reducing delays for players.
+
+
+Distributed Systems and Networks: To make the game work across multiple platforms, we can implement a RESTful API. This allows the client software on different devices (like phones, tablets, or desktops) to communicate with the server seamlessly. Hosting the game on a platform like AWS or Azure ensures high availability and minimizes downtime with distributed server networks. Load balancers and failover mechanisms will handle connectivity issues, so players won’t notice if one server goes offline.
+
+
+Security: Security is a big deal here, especially with player data involved. First, we’ll implement HTTPS for encrypted communication between devices and the server. For data storage, we can use encryption at rest and in transit to protect sensitive information. User authentication can be enhanced with OAuth2 for login security. Firewalls, regular software updates, and monitoring tools will help guard against vulnerabilities. And lastly, a disaster recovery plan ensures we can recover data quickly if something unexpected happens.
